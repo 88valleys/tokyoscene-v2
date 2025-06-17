@@ -1,6 +1,3 @@
-// import dotenv from "dotenv";
-// dotenv.config({ path: "./server/config.env" });
-
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 const uri = process.env.ATLAS_URI || "";
@@ -18,7 +15,8 @@ try {
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-    } catch(err) {
+} 
+catch(err) {
     console.error(err);
 }
 
