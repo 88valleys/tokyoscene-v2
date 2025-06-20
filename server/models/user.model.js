@@ -7,10 +7,10 @@ const UserSchema = new Schema({
     profile: {
         firstName: { type: String, trim: true },
         lastName: { type: String, trim: true },
-        nickname: String,
+        nickname: { type: String, trim: true },
         profile_pic: String,
     },
-    email: { type: String, required: true, unique: true, default: "" },
+    email: { type: String, required: true, unique: true},
     password: String,
 
     // TODO: Define is_band boolean
