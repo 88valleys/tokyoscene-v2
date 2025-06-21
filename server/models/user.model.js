@@ -18,6 +18,7 @@ const UserSchema = new Schema({
     spotify_name: String,
     spotify_access_token: String,
     spotify_refresh_token: String,
+    spotify_token_expires_at: Date,
     fave_genres: [{ type: String, trim: true }],
 });
 
