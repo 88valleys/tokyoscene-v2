@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
+import Band from './models/band.model.js';
+
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
