@@ -14,11 +14,14 @@ const UserSchema = new Schema({
     password: String,
 
     // TODO: Define is_band boolean
-    spotify_id: String,
-    spotify_name: String,
-    spotify_access_token: String,
-    spotify_refresh_token: String,
-    spotify_token_expires_at: Date,
+
+    spotify: {
+        id: String,
+        name: String,
+        access_token: String,                                       
+        refresh_token: String,
+        token_expires_at: Date,
+    },
     fave_genres: [{ type: String, trim: true }],
 });
 
