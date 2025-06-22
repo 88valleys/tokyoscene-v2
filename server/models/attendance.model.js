@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import User from './models/user.model.js';
+import Gig from './models/user.model.js';
 
 const { Schema } = mongoose;
 
