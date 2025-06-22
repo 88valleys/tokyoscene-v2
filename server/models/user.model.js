@@ -22,7 +22,9 @@ const UserSchema = new Schema({
         refresh_token: String,
         token_expires_at: Date,
     },
+
     fave_genres: [{ type: String, trim: true }],
+    fave_bands: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]
 });
 
 // Hash the password before saving
