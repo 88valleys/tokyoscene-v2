@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import User from './models/user.model.js';
-import Band from './models/band.model.js';
+import Artist from './models/artist.model.js';
 import Livehouse from './models/livehouse.model.js';
 
 const { Schema } = mongoose;
@@ -14,7 +14,7 @@ const GigSchema = new Schema({
     datetime: Date,
     description: String,
     genres: [{ type: String }],
-    bands: [{ type: Schema.Types.ObjectId, ref: 'Livehouse' }],
+    artists: [{ type: Schema.Types.ObjectId, ref: 'Artist' }],
     ticket_url: String,
     image_url: String,
     // Flag whether the gig is scraped or user-created
