@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-import Artist from './models/artist.model.js';
+import Artist from './artist.model.js';
 
 const { Schema } = mongoose;
 
@@ -15,8 +15,11 @@ const UserSchema = new Schema({
     email: { type: String, required: true, unique: true},
     password: String,
 
+    // Roles: if neither of these are true, the user is a general user.
     is_artist: { type: Boolean, default: false },  
+    is_admin: { type: Boolean, default: false },  
 
+    // Spotify tokens/credentials
     spotify: {
         id: String,
         name: String,

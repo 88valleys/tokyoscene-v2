@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
-import User from './models/user.model.js';
-import Artist from './models/artist.model.js';
-import Livehouse from './models/livehouse.model.js';
+import User from './user.model.js';
+import Artist from './artist.model.js';
+import Livehouse from './livehouse.model.js';
 
 const { Schema } = mongoose;
 
