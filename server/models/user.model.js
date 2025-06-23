@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
-import Band from './models/band.model.js';
+import Artist from './models/artist.model.js';
 
 const { Schema } = mongoose;
 
@@ -15,7 +15,7 @@ const UserSchema = new Schema({
     email: { type: String, required: true, unique: true},
     password: String,
 
-    is_band: { type: Boolean, default: false },
+    is_band: { type: Boolean, default: false },  
 
     spotify: {
         id: String,
@@ -26,7 +26,7 @@ const UserSchema = new Schema({
     },
 
     fave_genres: [{ type: String, trim: true }],
-    fave_bands: [{type: mongoose.Schema.Types.ObjectId, ref: 'Band'}]
+    fave_artists: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}]
 });
 
 // Hash the password before saving
