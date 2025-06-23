@@ -15,7 +15,7 @@ const UserSchema = new Schema({
     email: { type: String, required: true, unique: true},
     password: String,
 
-    is_band: { type: Boolean, default: false },  
+    is_artist: { type: Boolean, default: false },  
 
     spotify: {
         id: String,
