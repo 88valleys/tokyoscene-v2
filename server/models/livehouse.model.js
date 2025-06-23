@@ -1,12 +1,10 @@
 import mongoose from 'mongoose';
 import User from './models/user.model.js';
-import Band from './models/band.model.js';
 
 const { Schema } = mongoose;
 
 const LivehouseSchema = new Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    band: { type: mongoose.Schema.Types.ObjectId, ref: 'Band' },
 
     name: String,
     address: String,                                       
