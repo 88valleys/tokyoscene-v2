@@ -8,9 +8,9 @@ const { Schema } = mongoose;
 
 const UserSchema = new Schema({
     profile: {
-        firstName: { type: String, trim: true },
-        lastName: { type: String, trim: true },
-        nickname: { type: String, trim: true },
+        firstName: { type: String, trim: true, maxlength: 30 },
+        lastName: { type: String, trim: true, maxlength: 30 },
+        nickname: { type: String, trim: true, maxlength: 20 },
         profilePic: String,
     },
     email: {
@@ -69,7 +69,9 @@ const UserSchema = new Schema({
         ]
     }],
 
-    favArtists: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}]
+    following: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}],
+
+    friendsList: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
 });
 
 // Hash the password before saving
