@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
+import crypto from 'crypto';
 
 import Artist from './artist.model.js';
 
@@ -59,16 +60,27 @@ const UserSchema = new Schema({
 });
 
 // Hash the password before saving
-UserSchema.pre('save', async function (next) {
-    // Only hash if password is new or has been changed by user
-    if (!this.isModified('password')) return next();
-    try {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-        next();
-    } catch (err) {
-        next(err);
+const hashPassword = (password, salt) => (
+    password &&
+    salt &&
+    crypto
+        .pbkdf2Sync(password, Buffer.from(salt, 'base64'), 10000, 64, 'sha1')
+        .toString('base64')
+);
+
+UserSchema.pre('save', function hashPasswordForSave(next) {
+    const user = this;
+
+    if (user.password && user.isModified('password')) {
+        user.salt = crypto.randomBytes(16).toString('base64');
+        user.password = hashPassword(user.password, user.salt);
     }
+
+    next();
 });
+
+UserSchema.statics.authenticate = function(password, userPassword, userSalt) {
+    return userPassword === hashPassword(password, userSalt);
+};
 
 export default mongoose.model('User', UserSchema);
