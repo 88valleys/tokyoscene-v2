@@ -38,9 +38,9 @@ const UserSchema = new Schema({
     spotify: {
         id: String,
         name: String,
-        access_token: String,                                       
-        refresh_token: String,
-        token_expires_at: Date,
+        accessToken: String,                                       
+        refreshToken: String,
+        tokenExpiresAt: Date,
     },
 
     fave_genres: [{ type: String, trim: true }],
