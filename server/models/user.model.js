@@ -41,7 +41,19 @@ const UserSchema = new Schema({
         refreshToken: String,
     },
 
-    favGenres: [{ type: String, trim: true }],
+    favGenres: [{ 
+        type: String, 
+        trim: true,
+        enum: [
+            'alternative',
+            'pop',
+            'rock',
+            'jazz',
+            'electronic',
+            'classical',
+            'hip hop',
+        ]
+    }],
 
     favArtists: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}]
 });
