@@ -37,13 +37,12 @@ const UserSchema = new Schema({
     // Spotify tokens/credentials
     spotify: {
         id: String,
-        name: String,
-        accessToken: String,                                       
+        accessToken: String,                
         refreshToken: String,
-        tokenExpiresAt: Date,
     },
 
-    favGenres: [{ type: String, trim: true }],
+    fave_genres: [{ type: String, trim: true }],
+
     favArtists: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}]
 });
 
