@@ -24,6 +24,7 @@ const UserSchema = new Schema({
         ]
     },    
     password: String,
+    salt: String,
 
     // Roles: if neither of these are true, the user is a general user.
     is_artist: { type: Boolean, default: false },  
