@@ -35,12 +35,22 @@ const UserSchema = new Schema({
         default: ['user']
     },
 
+    // If null or not set, the user is not banned. If set, user is banned until this date. For permanent ban, use a far future date (e.g., 9999-01-01).
+    locked: Date,
+
     // Spotify tokens/credentials
     spotify: {
         id: String,
         accessToken: String,                
         refreshToken: String,
     },
+
+    payments: [{
+        stripeChargeId: String,
+        adminId: { type: Schema.Types.ObjectId, ref: 'User', index: true },
+        adminName: { type: String, trim: true },
+        date: { type: Date, default: Date.now },
+    }],
 
     favGenres: [{ 
         type: String, 
