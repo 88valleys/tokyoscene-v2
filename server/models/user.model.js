@@ -41,7 +41,7 @@ const UserSchema = new Schema({
         refreshToken: String,
     },
 
-    fave_genres: [{ type: String, trim: true }],
+    favGenres: [{ type: String, trim: true }],
 
     favArtists: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}]
 });
