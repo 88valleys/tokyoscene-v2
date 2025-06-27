@@ -12,7 +12,17 @@ const UserSchema = new Schema({
         nickname: { type: String, trim: true },
         profile_pic: String,
     },
-    email: { type: String, required: true, unique: true},
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true,
+        validate: [
+            email => validator.isEmail(),
+            'Please fill a valid email address'
+        ]
+    },    
     password: String,
 
     // Roles: if neither of these are true, the user is a general user.
