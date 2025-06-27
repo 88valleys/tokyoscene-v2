@@ -10,7 +10,7 @@ const UserSchema = new Schema({
         firstName: { type: String, trim: true },
         lastName: { type: String, trim: true },
         nickname: { type: String, trim: true },
-        profile_pic: String,
+        profilePic: String,
     },
     email: {
         type: String,
@@ -43,8 +43,8 @@ const UserSchema = new Schema({
         tokenExpiresAt: Date,
     },
 
-    fave_genres: [{ type: String, trim: true }],
-    fave_artists: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}]
+    favGenres: [{ type: String, trim: true }],
+    favArtists: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}]
 });
 
 // Hash the password before saving
