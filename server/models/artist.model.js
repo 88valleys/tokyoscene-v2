@@ -1,19 +1,37 @@
 import mongoose from 'mongoose';
 import User from './user.model.js';
+import { trim } from 'validator';
 // import Gig from './models/gig.model.js';
 
 const { Schema } = mongoose;
 
 const ArtistSchema = new Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    // TODO: Only implement the below value after the VP is done!
-    // gig: { type: mongoose.Schema.Types.ObjectId, ref: 'Gig', required: true },
-    
-    name: String,
-    description: String,
+    // Associate an artist to a user if the user wants to link their user ID to the artist profile
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    // TODO: Only implement the below value after the MVP is done!
+    gigs: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Gig', 
+        required: true 
+    }],
+    name: { 
+        type: String, 
+        trim: true, 
+        maxlength: 100, 
+        required: true 
+    },    
+    description: {
+        type: String,
+        trim: true,
+        maxlength: 1000
+    },
     genres: [{ type: String, trim: true }],
-    display_pic: String,
-    band_tracks: [{ type: String }],
+    displayPic: {
+        type: String,
+        trim: true
+    },
+    // Imported from Spotify API
+    bandTracks: [{ type: String, trim: true }],
 });
 
 export default mongoose.model('Artist', ArtistSchema);
