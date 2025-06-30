@@ -25,6 +25,13 @@ const ArtistSchema = new Schema({
         trim: true,
         maxlength: 1000
     },
+    platform: { 
+        type: String, 
+        trim: true, 
+        enum: [
+            'instagram', 'youtube', 'apple music', 'spotify', 'twitter', 'facebook', 'tiktok','soundcloud', 'bandcamp', 'website', 'threads', 'patreon'
+        ]
+    },
     genres: [{ type: String, trim: true }],
     displayPic: {
         type: String,
