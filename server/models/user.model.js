@@ -2,8 +2,6 @@ import mongoose from 'mongoose';
 import validator from 'validator';
 import crypto from 'crypto';
 
-import Artist from './artist.model.js';
-
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -24,7 +22,20 @@ const UserSchema = new Schema({
             'Please fill a valid email address'
         ]
     },    
-    password: String,
+    password: {
+        type: String,
+        minlength: 8, 
+        maxlength: 16,
+        validate: [
+            {
+                validator: function(v) {
+                    // Password should be at least one number, one symbol, and max 16 chars
+                    return /[0-9]/.test(v) && /[^A-Za-z0-9]/.test(v) && v.length <= 16;
+                },
+                message: 'Password must be up to 16 characters and include at least one number and one symbol.'
+            }
+        ]
+    },
     salt: String,
 
     roles: { 
