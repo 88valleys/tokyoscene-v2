@@ -13,8 +13,7 @@ const ArtistSchema = new Schema({
     // TODO: Only implement the below value after the MVP is done!
     events: [{ 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Event', 
-        required: true 
+        ref: 'Event'
     }],
     name: { 
         type: String, 
