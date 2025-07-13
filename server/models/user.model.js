@@ -14,6 +14,14 @@ const UserSchema = new Schema({
         nickname: { type: String, trim: true, maxlength: 20 },
         profilePic: String,
     },
+
+    // Profile privacy level
+    privacy: { 
+        type: String, 
+        enum: ['public', 'private', 'friends-only'], 
+        default: 'private' 
+    },
+
     email: {
         type: String,
         required: true,
@@ -79,10 +87,9 @@ const UserSchema = new Schema({
     resetPasswordExpires: Date,
 
     favGenres: [{ type: String, trim: true, enum: GENRES }],
-
     following: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}],
-
     friendsList: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    likedLivehouses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Livehouse' }],
 
     // Get user's current location
     location: {
@@ -94,8 +101,12 @@ const UserSchema = new Schema({
         coordinates: {
             type: [Number], // [longitude, latitude]
         }
-    }
-});
+    },
+
+    // T&C agreement
+    agreeToTerms: { type: Boolean, required: true, default: false },
+    agreedAt: { type: Date },
+}, { timestamps: true });
 
 // Hash the password before saving
 const hashPassword = (password, salt) => (
