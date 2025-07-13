@@ -3,7 +3,7 @@ import User from './user.model.js';
 import Event from './models/event.model.js';
 
 import { GENRES } from '../constants/genres.js';
-
+import { ARTIST_SOCIAL_PLATFORMS } from '../constants/socialPlatforms.js';
 
 const { Schema } = mongoose;
 
@@ -27,22 +27,17 @@ const ArtistSchema = new Schema({
         trim: true,
         maxlength: 1000
     },
+
     socialLinks: [{
-        platform: {
-            type: String,
-            trim: true,
-            enum: [
-                'instagram', 'youtube', 'apple music', 'spotify', 'twitter',
-                'facebook', 'tiktok', 'soundcloud', 'bandcamp', 'website',
-                'threads', 'patreon'
-            ]
-        },
+        platform: { type: String, enum: ARTIST_SOCIAL_PLATFORMS, trim: true },
         url: { type: String, trim: true }
     }],
-    genres: [{ type: String, trim: true, enum: GENRES }],    displayPic: {
-        type: String,
-        trim: true
-    },
+
+    genres: [{ 
+        type: String, trim: true, enum: GENRES 
+    }],    
+    
+    displayPic: { type: String, trim: true },
     // Imported from Spotify API
     bandTracks: [{ type: String, trim: true }],
 });
