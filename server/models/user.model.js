@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 import validator from 'validator';
 import crypto from 'crypto';
 
+import { GENRES } from '../constants/genres.js';
+import { USER_SOCIAL_PLATFORMS } from '../constants/socialPlatforms.js';
+
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -38,6 +41,15 @@ const UserSchema = new Schema({
     },
     salt: String,
 
+    socialLinks: [{
+        platform: { 
+            type: String, 
+            enum: USER_SOCIAL_PLATFORMS, 
+            trim: true 
+        },
+        url: { type: String, trim: true }
+    }],
+
     roles: { 
         type: [{ 
             type: String,
@@ -66,19 +78,7 @@ const UserSchema = new Schema({
     resetPasswordToken: String,
     resetPasswordExpires: Date,
 
-    favGenres: [{ 
-        type: String, 
-        trim: true,
-        enum: [
-            'alternative',
-            'pop',
-            'rock',
-            'jazz',
-            'electronic',
-            'classical',
-            'hip hop',
-        ]
-    }],
+    favGenres: [{ type: String, trim: true, enum: GENRES }],
 
     following: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}],
 
