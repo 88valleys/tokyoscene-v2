@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import User from './user.model.js';
-import { trim } from 'validator';
-// import Gig from './models/gig.model.js';
+import Event from './models/event.model.js';
 
 const { Schema } = mongoose;
 
@@ -9,9 +8,9 @@ const ArtistSchema = new Schema({
     // Associate an artist to a user if the user wants to link their user ID to the artist profile
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     // TODO: Only implement the below value after the MVP is done!
-    gigs: [{ 
+    events: [{ 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Gig', 
+        ref: 'Event', 
         required: true 
     }],
     name: { 
