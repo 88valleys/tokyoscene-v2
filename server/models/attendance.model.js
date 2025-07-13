@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import User from './user.model.js';
-import Gig from './user.model.js';
+import Event from './event.model.js';
 
 const { Schema } = mongoose;
 
@@ -13,10 +13,10 @@ const AttendanceSchema = new mongoose.Schema({
 
   // Relationships
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  gig: { type: mongoose.Schema.Types.ObjectId, ref: 'Gig', required: true },
+  event: { type: mongoose.Schema.Types.ObjectId, ref: 'Event', required: true },
   
 }, { timestamps: true });
 
-AttendanceSchema.index({ user: 1, gig: 1 }, { unique: true });
+AttendanceSchema.index({ user: 1, event: 1 }, { unique: true });
 
 export default mongoose.model('Attendance', AttendanceSchema);
