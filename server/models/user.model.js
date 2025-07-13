@@ -83,6 +83,18 @@ const UserSchema = new Schema({
     following: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artist'}],
 
     friendsList: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+
+    // Get user's current location
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            default: 'Point'
+        },
+        coordinates: {
+            type: [Number], // [longitude, latitude]
+        }
+    }
 });
 
 // Hash the password before saving
