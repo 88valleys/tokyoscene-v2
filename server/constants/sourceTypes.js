@@ -1,0 +1,1 @@
+export const SOURCE_TYPES = ['user', 'scraped', 'admin'];
