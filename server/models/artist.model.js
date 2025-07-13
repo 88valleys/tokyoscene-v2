@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 import User from './user.model.js';
 import Event from './models/event.model.js';
 
+import { GENRES } from '../constants/genres.js';
+
+
 const { Schema } = mongoose;
 
 const ArtistSchema = new Schema({
@@ -24,15 +27,19 @@ const ArtistSchema = new Schema({
         trim: true,
         maxlength: 1000
     },
-    platform: { 
-        type: String, 
-        trim: true, 
-        enum: [
-            'instagram', 'youtube', 'apple music', 'spotify', 'twitter', 'facebook', 'tiktok','soundcloud', 'bandcamp', 'website', 'threads', 'patreon'
-        ]
-    },
-    genres: [{ type: String, trim: true }],
-    displayPic: {
+    socialLinks: [{
+        platform: {
+            type: String,
+            trim: true,
+            enum: [
+                'instagram', 'youtube', 'apple music', 'spotify', 'twitter',
+                'facebook', 'tiktok', 'soundcloud', 'bandcamp', 'website',
+                'threads', 'patreon'
+            ]
+        },
+        url: { type: String, trim: true }
+    }],
+    genres: [{ type: String, trim: true, enum: GENRES }],    displayPic: {
         type: String,
         trim: true
     },
