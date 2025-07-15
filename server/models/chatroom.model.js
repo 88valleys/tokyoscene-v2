@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const ChatroomSchema = new Schema({
     event: { type: Schema.Types.ObjectId, ref: 'Event', required: true, unique: true },
     members: [{ type: Schema.Types.ObjectId, ref: 'User', required: true }],
-},  { timestamps: true });
+}, { timestamps: true });
 
 // Give the chatroom name the event name
 ChatroomSchema.virtual('name').get(function() {
